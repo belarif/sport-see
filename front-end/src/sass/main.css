@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  width: 100%;
+  font-family: Roboto, sans-serif;
+}
+
+.horizontalNav {
+  display: flex;
+  align-items: center;
+  padding-left: 28px;
+  height: 91px;
+  background-color: #020203;
+}
+.horizontalNav img {
+  width: 178px;
+  height: 61px;
+}
+.horizontalNav ul {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.horizontalNav ul li {
+  display: block;
+}
+.horizontalNav ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: bold;
+}/*# sourceMappingURL=main.css.map */
