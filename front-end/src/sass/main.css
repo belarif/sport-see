@@ -28,4 +28,15 @@ body {
   color: #ffffff;
   font-size: 24px;
   font-weight: bold;
+}
+
+.verticalNav {
+  justify-content: center;
+  width: 91px;
+  background-color: #020203;
+  min-height: 780px;
+}
+.verticalNav ul {
+  margin: 0;
+  padding-left: 0;
 }/*# sourceMappingURL=main.css.map */
