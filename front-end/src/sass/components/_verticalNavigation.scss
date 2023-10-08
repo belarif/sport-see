@@ -9,7 +9,7 @@
   width: 91px;
   height: inherit;
   z-index: 0;
-  background-color: $black;
+  background-color: #020203;
 
   ul {
     display: flex;
@@ -23,7 +23,7 @@
       border-radius: 6px;
       width: 64px;
       height: 64px;
-      background: $white;
+      background: #ffffff;
 
       a {
         justify-content: center;
@@ -48,6 +48,6 @@
     font-weight: 500;
     line-height: 24px;
     letter-spacing: 1px;
-    color: $white;
+    color: #ffffff;
   }
 }

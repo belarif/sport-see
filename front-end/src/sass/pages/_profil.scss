@@ -13,12 +13,18 @@
     margin-bottom: 70px;
 
     p {
-      color: $black;
+      color: #000000;
+      font-size: 18px;
+      font-weight: 700;
     }
 
     h1 {
       margin: 20px 0;
       font-size: 48px;
+
+      span {
+        color: #ff0101;
+      }
     }
   }
 

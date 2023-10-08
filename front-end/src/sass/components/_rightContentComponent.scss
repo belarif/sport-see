@@ -1,7 +1,7 @@
 .box {
   border-radius: 2px;
   padding: 30px;
-  background-color: $light-gray;
+  background-color: #fbfbfb;
 
   figure {
     display: flex;
@@ -14,13 +14,13 @@
       margin: 0;
       font-size: 14px;
       font-weight: 500;
-      color: $gray;
+      color: #74798c;
     }
 
     span {
       font-size: 20px;
       font-weight: 700;
-      color: $light-black;
+      color: #282d30;
     }
   }
 }
