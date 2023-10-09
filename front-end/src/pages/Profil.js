@@ -2,6 +2,7 @@ import React from "react";
 import "../sass/main.scss";
 import HorizontalNavigation from "../components/HorizontalNavigation";
 import VerticalNavigation from "../components/VerticalNavigation";
+import Card from "../components/Card";
 import Nutrient from "../components/Nutrient";
 
 const Profil = () => {
@@ -19,7 +20,12 @@ const Profil = () => {
         </section>
 
         <article>
-          <article className="leftContent"></article>
+          <article className="leftContent">
+            <div className="dailyActivity">cc</div>
+            <div className="informationCards">
+              <Card />
+            </div>
+          </article>
           <article className="rightContent">
             <Nutrient />
           </article>
