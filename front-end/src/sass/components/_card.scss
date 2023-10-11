@@ -1,17 +1,16 @@
-.card1 {
+.card {
   border-radius: 3px;
-  background-color: #ff0000;
   width: 33.33%;
-}
 
-.card2 {
-  border-radius: 3px;
-  background-color: #282d30;
-  width: 33.33%;
-}
+  &-orange {
+    background-color: #ff0000;
+  }
 
-.card3 {
-  border-radius: 3px;
-  background-color: #fbfbfb;
-  width: 33.33%;
+  &-black {
+    background-color: #282d30;
+  }
+
+  &-lightGray {
+    background-color: #fbfbfb;
+  }
 }

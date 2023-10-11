@@ -5,11 +5,11 @@ import Performance from "./Performance";
 const Card = () => {
   return (
     <React.Fragment>
-      <div className="card1">toto</div>
-      <div className="card2">
+      <div className="card card-orange">toto</div>
+      <div className="card card-black">
         <Performance />
       </div>
-      <div className="card3">
+      <div className="card card-lightGray">
         <Score />
       </div>
     </React.Fragment>
