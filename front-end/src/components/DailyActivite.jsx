@@ -63,28 +63,13 @@ const data = [
   },
 ];
 
-const CustomTooltip = ({ active, payload, label }) => {
-  if (active && payload && payload.length) {
-    return (
-      <div>
-        <p className="label">''</p>
-      </div>
-    );
-  }
-  return null;
-};
-
 export default class DailyActivity extends PureComponent {
-  //   static demoUrl = "https://codesandbox.io/s/simple-bar-chart-tpz8r";
-  //   static demoUrl =
-  //     "https://codesandbox.io/s/tooltip-with-customized-content-lyxvs";
+  static demoUrl = "https://codesandbox.io/s/simple-bar-chart-tpz8r";
 
   render() {
     return (
       <ResponsiveContainer width="100%" height="80%">
         <BarChart
-          width={500}
-          height={300}
           data={data}
           margin={{
             top: 5,
@@ -93,13 +78,24 @@ export default class DailyActivity extends PureComponent {
             bottom: 0,
           }}
         >
-          <CartesianGrid />
+          <CartesianGrid
+            strokeDasharray="3 3"
+            horizontalCoordinatesGenerator={(props) =>
+              props.height > 250 ? [75, 150, 225] : [100, 200]
+            }
+          />
+
           <XAxis dataKey="day" />
           <YAxis />
-          <Tooltip content={<CustomTooltip />} />
-          <Legend />
-          <Bar dataKey="kilogram" fill="#282D30" />
-          <Bar dataKey="calories" fill="#E60000" />
+          <Tooltip />
+          <Legend
+            verticalAlign="top"
+            align="right"
+            iconType="circle"
+            iconSize="9"
+          />
+          <Bar dataKey="kilogram" fill="#282D30" barSize={7} />
+          <Bar dataKey="calories" fill="#E60000" barSize={7} />
         </BarChart>
       </ResponsiveContainer>
     );
