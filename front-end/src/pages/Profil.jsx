@@ -1,20 +1,41 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "../sass/main.scss";
 import HorizontalNavigation from "../components/HorizontalNavigation";
 import VerticalNavigation from "../components/VerticalNavigation";
 import Card from "../components/Card";
 import Nutrient from "../components/Nutrient";
-import data from "../services/Api";
 import DailyActivite from "../components/DailyActivite";
+import fetchUserData from "../services/Api";
 
 const Profil = () => {
-  const { userData, loading, error } = data();
+  const [userData, setUserData] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  let { userId } = useParams();
 
   if (loading) <h1>LOADING...</h1>;
 
   if (error) console.log(error);
 
-  console.log(userData);
+  useEffect(() => {
+    setLoading(true);
+    const getUserData = async () => {
+      const res = await fetchUserData(userId);
+      setUserData(res);
+
+      if (res.error) {
+        setLoading(false);
+        setError(res.error);
+      } else {
+        setLoading(false);
+        setUserData(res);
+      }
+    };
+
+    getUserData();
+  }, [userId]);
 
   return (
     <React.Fragment>
@@ -24,7 +45,7 @@ const Profil = () => {
       <main className="dashboard">
         <section>
           <h1>
-            Bonjour <span>Thomas</span>
+            Bonjour <span></span>
           </h1>
           <p>Félicitation ! vous avez explosé vos objectifs hier &#128079;</p>
         </section>
