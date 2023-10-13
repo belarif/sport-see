@@ -5,7 +5,7 @@ import Profil from "./pages/Profil";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/profil/:id",
     element: <Profil />,
   },
 ]);

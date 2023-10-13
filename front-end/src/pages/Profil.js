@@ -4,16 +4,32 @@ import HorizontalNavigation from "../components/HorizontalNavigation";
 import VerticalNavigation from "../components/VerticalNavigation";
 import Card from "../components/Card";
 import Nutrient from "../components/Nutrient";
-import data from "../services/Api";
+import {getUserData} from "../services/Api";
 import DailyActivite from "../components/DailyActivite";
 
 const Profil = () => {
-  const { userData, loading, error } = data();
+  
+  const [userData, setUserData] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  if (loading) <h1>LOADING...</h1>;
+  useEffect(() => {
+    const id = 12;
+    setLoading(true);
+    const request = async () => {
+      const res = getUserData(id);
+      if (res.error) {
+        setLoading(false);
+        setError(res.error)
+      } else {
+        setLoading(false);
+        setUserData(res);
+      }
+    }
+    request();
+  }, [getUserData]);
 
-  if (error) console.log(error);
-
+  
   console.log(userData);
 
   return (
