@@ -1,11 +1,14 @@
 import React from "react";
 import Score from "./Score";
 import Performance from "./Performance";
+import DurationSession from "./DurationSession";
 
 const Card = () => {
   return (
     <React.Fragment>
-      <div className="card card-orange">toto</div>
+      <div className="card card-orange">
+        <DurationSession />
+      </div>
       <div className="card card-black">
         <Performance />
       </div>
