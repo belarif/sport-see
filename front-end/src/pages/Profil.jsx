@@ -6,8 +6,8 @@ import HorizontalNavigation from "../components/HorizontalNavigation";
 import VerticalNavigation from "../components/VerticalNavigation";
 import Card from "../components/Card";
 import Nutrient from "../components/Nutrient";
-import DailyActivite from "../components/DailyActivite";
-import fetchUserData from "../services/Api";
+import { fetchUserData } from "../services/Api";
+import DailyActivity from "../components/DailyActivite";
 
 const Profil = () => {
   const [userData, setUserData] = useState({});
@@ -40,7 +40,6 @@ const Profil = () => {
   return (
     <React.Fragment>
       <HorizontalNavigation />
-
       <VerticalNavigation />
       <main className="dashboard">
         <section>
@@ -53,7 +52,7 @@ const Profil = () => {
         <article>
           <article className="leftContent">
             <div className="dailyActivity">
-              <DailyActivite />
+              <DailyActivity />
             </div>
             <div className="informationCards">
               <Card />

@@ -11,4 +11,15 @@ const fetchUserData = async (userId) => {
   }
 };
 
-export default fetchUserData;
+const fetchUserDailyActivity = async (userId) => {
+  try {
+    const response = await fetch(`${baseUrl}${userId}/activity`);
+    const { data } = await response.json();
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export { fetchUserData, fetchUserDailyActivity };

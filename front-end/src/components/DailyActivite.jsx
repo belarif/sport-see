@@ -1,4 +1,7 @@
 import React, { PureComponent } from "react";
+import { useState, useEffect } from "react";
+import { fetchUserDailyActivity } from "../services/Api";
+import { useParams } from "react-router-dom";
 import {
   BarChart,
   Bar,
@@ -10,67 +13,29 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
-  {
-    day: "1",
-    calories: 240,
-    kilogram: 80,
-  },
-  {
-    day: "2",
-    calories: 220,
-    kilogram: 80,
-  },
-  {
-    day: "3",
-    calories: 280,
-    kilogram: 81,
-  },
-  {
-    day: "4",
-    calories: 290,
-    kilogram: 81,
-  },
-  {
-    day: "5",
-    calories: 160,
-    kilogram: 81,
-  },
-  {
-    day: "6",
-    calories: 240,
-    kilogram: 80,
-  },
-  {
-    day: "7",
-    calories: 162,
-    kilogram: 78,
-  },
-  {
-    day: "8",
-    calories: 240,
-    kilogram: 80,
-  },
-  {
-    day: "9",
-    calories: 390,
-    kilogram: 76,
-  },
-  {
-    day: "10",
-    calories: 220,
-    kilogram: 68,
-  },
-];
+const DailyActivity = () => {
+  const [activity, setActivity] = useState({});
+  let { userId } = useParams();
 
-export default class DailyActivity extends PureComponent {
+  useEffect(() => {
+    const getUserDailyActivity = async () => {
+      const res = await fetchUserDailyActivity(userId);
+      setActivity(res);
+    };
+
+    getUserDailyActivity();
+  }, [userId]);
+
+  return <SetDataBarChart activity={activity.sessions} />;
+};
+
+class SetDataBarChart extends PureComponent {
   static demoUrl = "https://codesandbox.io/s/simple-bar-chart-tpz8r";
-
   render() {
     return (
       <ResponsiveContainer width="100%" height="80%">
         <BarChart
-          data={data}
+          data={this.props.activity}
           margin={{
             top: 5,
             right: 30,
@@ -101,3 +66,5 @@ export default class DailyActivity extends PureComponent {
     );
   }
 }
+
+export default DailyActivity;
