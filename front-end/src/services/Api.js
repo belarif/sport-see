@@ -33,4 +33,18 @@ const fetchUserPerformance = async (userId) => {
   }
 };
 
-export { fetchUserData, fetchUserDailyActivity, fetchUserPerformance };
+const fetchUserDurationSession = async (userId) => {
+  try {
+    const response = await fetch(`${baseUrl}${userId}/average-sessions`);
+    const { data } = await response.json();
+
+    return data;
+  } catch (error) {}
+};
+
+export {
+  fetchUserData,
+  fetchUserDailyActivity,
+  fetchUserPerformance,
+  fetchUserDurationSession,
+};

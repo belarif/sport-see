@@ -1,5 +1,4 @@
-import React, { PureComponent } from "react";
-import { useState, useEffect } from "react";
+import React, { PureComponent, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchUserPerformance } from "../services/Api";
 import {
