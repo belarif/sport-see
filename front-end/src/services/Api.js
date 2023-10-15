@@ -22,4 +22,15 @@ const fetchUserDailyActivity = async (userId) => {
   }
 };
 
-export { fetchUserData, fetchUserDailyActivity };
+const fetchUserPerformance = async (userId) => {
+  try {
+    const response = await fetch(`${baseUrl}${userId}/performance`);
+    const { data } = await response.json();
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export { fetchUserData, fetchUserDailyActivity, fetchUserPerformance };

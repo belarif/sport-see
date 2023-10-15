@@ -26,10 +26,10 @@ const DailyActivity = () => {
     getUserDailyActivity();
   }, [userId]);
 
-  return <SetDataBarChart activity={activity.sessions} />;
+  return <SetBarChartData activity={activity.sessions} />;
 };
 
-class SetDataBarChart extends PureComponent {
+class SetBarChartData extends PureComponent {
   static demoUrl = "https://codesandbox.io/s/simple-bar-chart-tpz8r";
   render() {
     return (

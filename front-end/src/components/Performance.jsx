@@ -1,4 +1,7 @@
 import React, { PureComponent } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { fetchUserPerformance } from "../services/Api";
 import {
   Radar,
   RadarChart,
@@ -8,58 +11,39 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
-  {
-    subject: "Math",
-    A: 120,
-    B: 110,
-    fullMark: 150,
-  },
-  {
-    subject: "Chinese",
-    A: 98,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: "English",
-    A: 86,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: "Geography",
-    A: 99,
-    B: 100,
-    fullMark: 150,
-  },
-  {
-    subject: "Physics",
-    A: 85,
-    B: 90,
-    fullMark: 150,
-  },
-  {
-    subject: "History",
-    A: 65,
-    B: 85,
-    fullMark: 150,
-  },
-];
+const Performance = () => {
+  const [performance, setPerformance] = useState({});
+  let { userId } = useParams();
 
-export default class Performance extends PureComponent {
+  useEffect(() => {
+    const getUserPerformance = async () => {
+      const res = await fetchUserPerformance(userId);
+      setPerformance(res);
+    };
+
+    getUserPerformance();
+  }, [userId]);
+
+  return <SetRadarData performance={performance.data} />;
+};
+class SetRadarData extends PureComponent {
   static demoUrl = "https://codesandbox.io/s/simple-radar-chart-rjoc6";
 
   render() {
     return (
       <ResponsiveContainer width="100%" height="100%">
-        <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
+        <RadarChart
+          cx="50%"
+          cy="50%"
+          outerRadius="80%"
+          data={this.props.performance}
+        >
           <PolarGrid />
-          <PolarAngleAxis dataKey="subject" />
+          <PolarAngleAxis dataKey="kind" />
           <PolarRadiusAxis />
           <Radar
             name="Mike"
-            dataKey="A"
+            dataKey="value"
             stroke="#8884d8"
             fill="#8884d8"
             fillOpacity={0.6}
@@ -69,3 +53,5 @@ export default class Performance extends PureComponent {
     );
   }
 }
+
+export default Performance;
