@@ -2,11 +2,16 @@ import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Profil from "./pages/Profil";
+import Error from "./pages/Error";
 
 const router = createBrowserRouter([
   {
     path: "/Profil/:userId",
     element: <Profil />,
+  },
+  {
+    path: "*",
+    element: <Error />,
   },
 ]);
 

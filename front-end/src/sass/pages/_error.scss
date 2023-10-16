@@ -1,0 +1,27 @@
+main {
+  position: absolute;
+  top: 200px;
+  left: 91px;
+  padding: 2% 6%;
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+
+  .content {
+    text-align: center;
+
+    h1,
+    p {
+      color: #e60000;
+    }
+
+    h1 {
+      font-size: 46px;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 26px;
+      font-weight: 800;
+    }
+  }
+}

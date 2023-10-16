@@ -24,7 +24,7 @@ const DailyActivity = () => {
 
     getUserDailyActivity();
   }, [userId]);
-
+  console.log(activity);
   return <SetBarChartData activity={activity.sessions} />;
 };
 
@@ -32,26 +32,26 @@ class SetBarChartData extends PureComponent {
   static demoUrl = "https://codesandbox.io/s/simple-bar-chart-tpz8r";
   render() {
     return (
-      <ResponsiveContainer width="100%" height="80%">
+      <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={this.props.activity}
           margin={{
-            top: 5,
+            top: 30,
             right: 30,
-            left: 20,
-            bottom: 0,
+            left: 30,
+            bottom: 30,
           }}
         >
-          <CartesianGrid
-            strokeDasharray="3 3"
-            horizontalCoordinatesGenerator={(props) =>
-              props.height > 250 ? [75, 150, 225] : [100, 200]
-            }
+          <CartesianGrid strokeDasharray="3 3" vertical={false} />
+          <XAxis dataKey="day" tickLine={false} tickMargin={20} />
+          <YAxis
+            axisLine={false}
+            tickLine={false}
+            orientation="right"
+            tickMargin={45}
           />
 
-          <XAxis dataKey="day" />
-          <YAxis />
-          <Tooltip />
+          <Tooltip label="" />
           <Legend
             verticalAlign="top"
             align="right"
