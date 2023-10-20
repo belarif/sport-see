@@ -1,4 +1,4 @@
-import React, { PureComponent, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchUserPerformance } from "../services/Api";
 import {
@@ -23,20 +23,10 @@ const Performance = () => {
     getUserPerformance();
   }, [userId]);
 
-  return <SetRadarData performance={performance.data} />;
-};
-class SetRadarData extends PureComponent {
-  static demoUrl = "https://codesandbox.io/s/simple-radar-chart-rjoc6";
-
-  render() {
-    return (
-      <ResponsiveContainer width="100%" height="100%">
-        <RadarChart
-          cx="50%"
-          cy="50%"
-          outerRadius="80%"
-          data={this.props.performance}
-        >
+  return (
+    <React.Fragment>
+      <ResponsiveContainer>
+        <RadarChart cx="50%" cy="50%" outerRadius="80%" data={performance.data}>
           <PolarGrid />
           <PolarAngleAxis dataKey="kind" />
           <PolarRadiusAxis />
@@ -49,8 +39,8 @@ class SetRadarData extends PureComponent {
           />
         </RadarChart>
       </ResponsiveContainer>
-    );
-  }
-}
+    </React.Fragment>
+  );
+};
 
 export default Performance;

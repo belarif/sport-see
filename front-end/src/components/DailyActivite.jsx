@@ -1,4 +1,4 @@
-import React, { PureComponent, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { fetchUserDailyActivity } from "../services/Api";
 import { useParams } from "react-router-dom";
 import {
@@ -19,22 +19,17 @@ const DailyActivity = () => {
   useEffect(() => {
     const getUserDailyActivity = async () => {
       const res = await fetchUserDailyActivity(userId);
-      setActivity(res);
+      setActivity(res.sessions);
     };
 
     getUserDailyActivity();
   }, [userId]);
-  console.log(activity);
-  return <SetBarChartData activity={activity.sessions} />;
-};
 
-class SetBarChartData extends PureComponent {
-  static demoUrl = "https://codesandbox.io/s/simple-bar-chart-tpz8r";
-  render() {
-    return (
-      <ResponsiveContainer width="100%" height="100%">
+  return (
+    <React.Fragment>
+      <ResponsiveContainer>
         <BarChart
-          data={this.props.activity}
+          data={activity}
           margin={{
             top: 30,
             right: 30,
@@ -62,8 +57,8 @@ class SetBarChartData extends PureComponent {
           <Bar dataKey="calories" fill="#E60000" barSize={7} />
         </BarChart>
       </ResponsiveContainer>
-    );
-  }
-}
+    </React.Fragment>
+  );
+};
 
 export default DailyActivity;
