@@ -30,6 +30,21 @@ const DailyActivity = () => {
     getUserDailyActivity();
   }, [userId]);
 
+  const CustomTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="custom-tooltip">
+          <p>{`${payload[0].value}kg`}</p>
+          <p>{`${payload[1].value}kcal`}</p>
+        </div>
+      );
+    }
+
+    return null;
+  };
+
+  console.log(activity);
+
   return (
     <React.Fragment>
       <ResponsiveContainer>
@@ -57,8 +72,7 @@ const DailyActivity = () => {
             type="number"
             domain={[0, "dataMax"]}
           />
-
-          <Tooltip label="" />
+          <Tooltip content={<CustomTooltip />} />
           <Legend
             verticalAlign="top"
             align="right"

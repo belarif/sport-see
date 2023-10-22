@@ -44,7 +44,7 @@ const Profil = () => {
       <main className="dashboard">
         <section>
           <h1>
-            Bonjour <span></span>
+            Bonjour <span>Thomas</span>
           </h1>
           <p>Félicitation ! vous avez explosé vos objectifs hier &#128079;</p>
         </section>
