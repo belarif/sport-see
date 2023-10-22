@@ -13,13 +13,18 @@ import {
 } from "recharts";
 
 const DailyActivity = () => {
-  const [activity, setActivity] = useState({});
+  const [activity, setActivity] = useState([]);
   let { userId } = useParams();
 
   useEffect(() => {
     const getUserDailyActivity = async () => {
       const res = await fetchUserDailyActivity(userId);
-      setActivity(res.sessions);
+      setActivity(
+        res.sessions.map((item, index) => ({
+          ...item,
+          index: index + 1,
+        }))
+      );
     };
 
     getUserDailyActivity();
@@ -38,12 +43,19 @@ const DailyActivity = () => {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" vertical={false} />
-          <XAxis dataKey="day" tickLine={false} tickMargin={20} />
+          <XAxis
+            dataKey="index"
+            tickLine={false}
+            tickMargin={20}
+            scale="point"
+          />
           <YAxis
             axisLine={false}
             tickLine={false}
             orientation="right"
             tickMargin={45}
+            type="number"
+            domain={[0, "dataMax"]}
           />
 
           <Tooltip label="" />
@@ -53,8 +65,20 @@ const DailyActivity = () => {
             iconType="circle"
             iconSize="9"
           />
-          <Bar dataKey="kilogram" fill="#282D30" barSize={7} />
-          <Bar dataKey="calories" fill="#E60000" barSize={7} />
+          <Bar
+            name="Poids (kg)"
+            dataKey="kilogram"
+            fill="#282D30"
+            barSize={7}
+            radius={[20, 20, 0, 0]}
+          />
+          <Bar
+            name="Calories brulées (kCalories)"
+            dataKey="calories"
+            fill="#E60000"
+            barSize={7}
+            radius={[20, 20, 0, 0]}
+          />
         </BarChart>
       </ResponsiveContainer>
     </React.Fragment>
