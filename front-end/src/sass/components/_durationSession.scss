@@ -1,9 +1,13 @@
-.barChart-tooltip {
+.lineChart-tooltip {
   padding: 4px 6px;
   width: auto;
   text-align: center;
-  background-color: #e60000;
-  color: #fff;
+  background-color: #fff;
+  color: #000;
   font-size: 12px;
   font-weight: 700;
+
+  p {
+    margin: 5px 0;
+  }
 }

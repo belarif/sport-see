@@ -30,10 +30,10 @@ const DailyActivity = () => {
     getUserDailyActivity();
   }, [userId]);
 
-  const CustomTooltip = ({ active, payload }) => {
+  const BarChartTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
-        <div className="custom-tooltip">
+        <div className="barChart-tooltip">
           <p>{`${payload[0].value}kg`}</p>
           <p>{`${payload[1].value}kcal`}</p>
         </div>
@@ -42,8 +42,6 @@ const DailyActivity = () => {
 
     return null;
   };
-
-  console.log(activity);
 
   return (
     <React.Fragment>
@@ -72,7 +70,7 @@ const DailyActivity = () => {
             type="number"
             domain={[0, "dataMax"]}
           />
-          <Tooltip content={<CustomTooltip />} />
+          <Tooltip content={<BarChartTooltip />} />
           <Legend
             verticalAlign="top"
             align="right"
