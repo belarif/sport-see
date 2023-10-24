@@ -6,7 +6,6 @@ import {
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
-  PolarRadiusAxis,
   ResponsiveContainer,
 } from "recharts";
 
@@ -17,24 +16,34 @@ const Performance = () => {
   useEffect(() => {
     const getUserPerformance = async () => {
       const res = await fetchUserPerformance(userId);
-      setPerformance(res);
+
+      setPerformance(
+        res.data.map((item, index) => ({
+          ...item,
+          kind: Object.values(res.kind)[index],
+        }))
+      );
     };
 
     getUserPerformance();
-  }, [userId]);
+  }, [userId, performance.kind]);
 
   return (
     <React.Fragment>
       <ResponsiveContainer>
-        <RadarChart cx="50%" cy="50%" outerRadius="80%" data={performance.data}>
-          <PolarGrid />
-          <PolarAngleAxis dataKey="kind" />
-          <PolarRadiusAxis />
+        <RadarChart cx="50%" cy="50%" outerRadius="80%" data={performance}>
+          <PolarGrid
+            radialLines={false}
+            polarRadius={["10", "24", "47", "69", "92"]}
+          />
+          <PolarAngleAxis
+            dataKey="kind"
+            tick={{ fill: "#FFFFFF", fontSize: "12px", fontWeight: "600" }}
+          />
           <Radar
-            name="Mike"
             dataKey="value"
             stroke="#8884d8"
-            fill="#8884d8"
+            fill="#E60000"
             fillOpacity={0.6}
           />
         </RadarChart>
