@@ -44,7 +44,10 @@ const Profil = () => {
       <main className="dashboard">
         <section>
           <h1>
-            Bonjour <span>Thomas</span>
+            Bonjour
+            <span className="firstName">
+              {userData.userInfos && userData.userInfos.firstName}
+            </span>
           </h1>
           <p>Félicitation ! vous avez explosé vos objectifs hier &#128079;</p>
         </section>
@@ -59,7 +62,7 @@ const Profil = () => {
             </div>
           </article>
           <article className="rightContent">
-            <Nutrient />
+            <Nutrient keyData={userData.keyData} />
           </article>
         </article>
       </main>

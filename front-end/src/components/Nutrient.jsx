@@ -4,14 +4,14 @@ import proteinsIcon from "../assets/icons/protein-icon.svg";
 import glucidesIcon from "../assets/icons/carbs-icon.svg";
 import lipidesIcon from "../assets/icons/fat-icon.svg";
 
-const Nutrient = () => {
+const Nutrient = ({ keyData }) => {
   return (
     <React.Fragment>
       <div className="box">
         <figure>
           <img src={caloriesIcon} alt="calories" />
           <figcaption>
-            <span>1,930kCal</span>
+            <span>{keyData && keyData.calorieCount}kCal</span>
             <p>Calories</p>
           </figcaption>
         </figure>
@@ -21,7 +21,7 @@ const Nutrient = () => {
         <figure>
           <img src={proteinsIcon} alt="proteins" />
           <figcaption>
-            <span>155gr</span>
+            <span>{keyData && keyData.proteinCount}gr</span>
             <p>Proteins</p>
           </figcaption>
         </figure>
@@ -31,7 +31,7 @@ const Nutrient = () => {
         <figure>
           <img src={glucidesIcon} alt="glucides" />
           <figcaption>
-            <span>290gr</span>
+            <span>{keyData && keyData.carbohydrateCount}gr</span>
             <p>Glucides</p>
           </figcaption>
         </figure>
@@ -41,7 +41,7 @@ const Nutrient = () => {
         <figure>
           <img src={lipidesIcon} alt="lipides" />
           <figcaption>
-            <span>50gr</span>
+            <span>{keyData && keyData.lipidCount}gr</span>
             <p>Lipides</p>
           </figcaption>
         </figure>
