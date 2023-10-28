@@ -4,8 +4,10 @@ import { useParams } from "react-router-dom";
 import "../sass/main.scss";
 import HorizontalNavigation from "../components/HorizontalNavigation";
 import VerticalNavigation from "../components/VerticalNavigation";
+import Score from "../components/Score";
+import Performance from "../components/Performance";
+import DurationSession from "../components/DurationSession";
 import Card from "../components/Card";
-import Nutrient from "../components/Nutrient";
 import { fetchUserData } from "../services/Api";
 import DailyActivity from "../components/DailyActivite";
 
@@ -58,11 +60,19 @@ const Profil = () => {
               <DailyActivity />
             </div>
             <div className="informationCards">
-              <Card />
+              <div className="card card-orange">
+                <DurationSession />
+              </div>
+              <div className="card card-black">
+                <Performance />
+              </div>
+              <div className="card card-lightGray">
+                <Score />
+              </div>
             </div>
           </article>
           <article className="rightContent">
-            <Nutrient keyData={userData.keyData} />
+            <Card keyData={userData.keyData} />
           </article>
         </article>
       </main>

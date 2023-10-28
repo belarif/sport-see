@@ -1,16 +1,26 @@
-.card {
+.box {
   border-radius: 3px;
-  width: 33.33%;
+  padding: 30px;
+  background-color: #fbfbfb;
 
-  &-orange {
-    background-color: #ff0000;
-  }
+  figure {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin: 0;
+    line-height: 24px;
 
-  &-black {
-    background-color: #282d30;
-  }
+    p {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 500;
+      color: #74798c;
+    }
 
-  &-lightGray {
-    background-color: #fbfbfb;
+    span {
+      font-size: 20px;
+      font-weight: 700;
+      color: #282d30;
+    }
   }
 }
