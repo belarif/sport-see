@@ -15,13 +15,15 @@ const DurationSession = () => {
   let { userId } = useParams();
 
   useEffect(() => {
+    let weekDays = ["L", "M", "M", "J", "V", "S", "D"];
+
     const getUserDurationSession = async () => {
       const res = await fetchUserDurationSession(userId);
-      console.log(res.sessions);
+
       setDurationSession(
-        res.sessions.map((item, day) => ({
+        res.sessions.map((item, index) => ({
           ...item,
-          day: "ii",
+          day: weekDays[index],
         }))
       );
     };
@@ -49,7 +51,12 @@ const DurationSession = () => {
     <React.Fragment>
       <ResponsiveContainer>
         <LineChart width={300} height={100} data={durationSession}>
-          <XAxis tickLine={false} axisLine={false} />
+          <XAxis
+            dataKey="day"
+            tickLine={false}
+            axisLine={false}
+            tick={{ fill: "#FFFFFF", opacity: "0.8", fontSize: "13px" }}
+          />
           <Tooltip content={<LineChartTooltip />} />
           <Legend verticalAlign="top" align="left" content={LineChartLegend} />
           <Line
@@ -58,6 +65,7 @@ const DurationSession = () => {
             stroke="#8884d8"
             strokeWidth={2}
             dot={false}
+            tick={{ fill: "#FFFFFF" }}
           />
         </LineChart>
       </ResponsiveContainer>
