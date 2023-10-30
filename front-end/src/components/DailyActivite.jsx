@@ -16,6 +16,17 @@ const DailyActivity = () => {
   const [activity, setActivity] = useState([]);
   let { userId } = useParams();
 
+  const legendData = [
+    {
+      itemValue: "Poids (kg)",
+      color: "#282d30",
+    },
+    {
+      itemValue: "Calories brulées (kCalories)",
+      color: "#e60000",
+    },
+  ];
+
   useEffect(() => {
     const getUserDailyActivity = async () => {
       const res = await fetchUserDailyActivity(userId);
@@ -43,6 +54,29 @@ const DailyActivity = () => {
     return null;
   };
 
+  const BarChartLegend = () => {
+    return (
+      <div className="title-legend">
+        <h1>Activité quotidienne</h1>
+        <ul className="barChart-legend">
+          {legendData.map((entry, index) => (
+            <li style={{ color: entry.color }} key={`item-${index}`}>
+              <span
+                style={{
+                  color: "#74798C",
+                  fontSize: "14px",
+                  fontWeight: "700",
+                }}
+              >
+                {entry.itemValue}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
+
   return (
     <React.Fragment>
       <ResponsiveContainer>
@@ -55,12 +89,18 @@ const DailyActivity = () => {
             bottom: 30,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" vertical={false} />
+          <CartesianGrid
+            strokeDasharray="3 3"
+            vertical={false}
+            stroke="#dedede"
+          />
           <XAxis
             dataKey="index"
             tickLine={false}
             tickMargin={20}
-            scale="point"
+            scale="auto"
+            stroke="#dedede"
+            tick={{ stroke: "#9B9eac" }}
           />
           <YAxis
             axisLine={false}
@@ -69,25 +109,25 @@ const DailyActivity = () => {
             tickMargin={45}
             type="number"
             domain={[0, "dataMax"]}
+            tick={{ stroke: "#9B9eac" }}
           />
           <Tooltip content={<BarChartTooltip />} />
           <Legend
             verticalAlign="top"
-            align="right"
-            iconType="circle"
-            iconSize="9"
+            // iconType="circle"
+            content={BarChartLegend}
           />
           <Bar
             name="Poids (kg)"
             dataKey="kilogram"
-            fill="#282D30"
+            fill="#282d30"
             barSize={7}
             radius={[20, 20, 0, 0]}
           />
           <Bar
             name="Calories brulées (kCalories)"
             dataKey="calories"
-            fill="#E60000"
+            fill="#e60000"
             barSize={7}
             radius={[20, 20, 0, 0]}
           />
