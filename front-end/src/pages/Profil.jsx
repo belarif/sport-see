@@ -67,7 +67,7 @@ const Profil = () => {
                 <Performance />
               </div>
               <div className="card card-lightGray">
-                <Score />
+                <Score userData={userData} />
               </div>
             </div>
           </article>

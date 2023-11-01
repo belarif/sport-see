@@ -6,39 +6,62 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
-  {
-    name: "40-49",
-    uv: 8.63,
-    pv: 3908,
-    fill: "#a4de6c",
-  },
-];
+const Score = ({ userData }) => {
+  const scoreToto = userData.todayScore * 100;
 
-const style = {
-  top: "50%",
-  right: 0,
-  transform: "translate(0, -50%)",
-  lineHeight: "34px",
-};
+  const data = [
+    {
+      score: 100,
+      fill: "#ffffff",
+      innerRadius: 10,
+    },
+    {
+      score: scoreToto,
+      fill: "#ff0000",
+      innerRadius: 70,
+    },
+  ];
 
-const Score = () => {
+  const legendData = [data[1]];
+
+  const RadialBarLegend = () => {
+    return (
+      <ul className="radialBar-legend">
+        {legendData.map((entry, index) => (
+          <li className="percent" key={`item-${index}`}>
+            <b>{`${entry.score}%`}</b>
+            <br /> de votre objectif
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
   return (
     <ResponsiveContainer>
       <RadialBarChart
-        cx="50%"
-        cy="50%"
-        innerRadius="10%"
-        outerRadius="80%"
-        barSize={10}
         data={data}
+        innerRadius="innerRadius"
+        startAngle={90}
+        endAngle={360 + 90}
+        barSize={13}
+        outerRadius="150%"
       >
-        <RadialBar minAngle={15} background clockWise dataKey="uv" />
+        <RadialBar dataKey="score" radius={60} style={{ paddingTop: "90px" }} />
+        <text
+          x="8%"
+          y="10%"
+          dy={+12}
+          style={{ fontSize: 15, fontWeight: "bolder", fill: "#20253A" }}
+        >
+          Score
+        </text>
         <Legend
-          iconSize={10}
+          iconSize={0}
           layout="vertical"
           verticalAlign="middle"
-          wrapperStyle={style}
+          content={RadialBarLegend}
+          wrapperStyle={{ top: "0", width: "inherit", height: "inherit" }}
         />
       </RadialBarChart>
     </ResponsiveContainer>
