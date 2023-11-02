@@ -1,13 +1,19 @@
 import React from "react";
-import {
-  RadialBarChart,
-  RadialBar,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
 
 const Score = ({ userData }) => {
-  const scoreToto = userData.todayScore * 100;
+  const objectProperties = Object.keys(userData);
+  const scoreProperty = objectProperties[2];
+
+  if (scoreProperty === "todayScore") {
+    Object.defineProperty(
+      userData,
+      "score",
+      Object.getOwnPropertyDescriptor(userData, "todayScore")
+    );
+  }
+
+  const scoreInPercent = userData.score * 100;
 
   const data = [
     {
@@ -16,26 +22,11 @@ const Score = ({ userData }) => {
       innerRadius: 10,
     },
     {
-      score: scoreToto,
+      score: scoreInPercent,
       fill: "#ff0000",
       innerRadius: 70,
     },
   ];
-
-  const legendData = [data[1]];
-
-  const RadialBarLegend = () => {
-    return (
-      <ul className="radialBar-legend">
-        {legendData.map((entry, index) => (
-          <li className="percent" key={`item-${index}`}>
-            <b>{`${entry.score}%`}</b>
-            <br /> de votre objectif
-          </li>
-        ))}
-      </ul>
-    );
-  };
 
   return (
     <ResponsiveContainer>
@@ -47,22 +38,37 @@ const Score = ({ userData }) => {
         barSize={13}
         outerRadius="150%"
       >
-        <RadialBar dataKey="score" radius={60} style={{ paddingTop: "90px" }} />
+        <RadialBar dataKey="score" style={{ paddingTop: "90px" }} background />
         <text
-          x="8%"
-          y="10%"
-          dy={+12}
+          x="10%"
+          y="16%"
           style={{ fontSize: 15, fontWeight: "bolder", fill: "#20253A" }}
         >
           Score
         </text>
-        <Legend
-          iconSize={0}
-          layout="vertical"
-          verticalAlign="middle"
-          content={RadialBarLegend}
-          wrapperStyle={{ top: "0", width: "inherit", height: "inherit" }}
-        />
+        <text
+          x="45%"
+          y="45%"
+          style={{
+            fontSize: "20px",
+            fontWeight: "bold",
+            fill: "#282d30",
+          }}
+        >
+          {scoreInPercent}%
+        </text>
+
+        <text
+          x="35%"
+          y="55%"
+          style={{
+            fontSize: 18,
+            fontWeight: "bold",
+            fill: "#74798c",
+          }}
+        >
+          de votre objectif
+        </text>
       </RadialBarChart>
     </ResponsiveContainer>
   );
