@@ -11,7 +11,7 @@ import {
 } from "recharts";
 
 const Performance = () => {
-  const [performance, setPerformance] = useState({});
+  const [performance, setPerformance] = useState([]);
   let { userId } = useParams();
 
   useEffect(() => {
@@ -21,16 +21,13 @@ const Performance = () => {
     };
 
     getUserPerformance();
-  }, [userId, performance.kind]);
+  }, [userId]);
 
   return (
     <React.Fragment>
       <ResponsiveContainer>
         <RadarChart cx="50%" cy="50%" outerRadius="80%" data={performance}>
-          <PolarGrid
-            radialLines={false}
-            polarRadius={["10", "24", "47", "69", "92"]}
-          />
+          <PolarGrid radialLines={false} />
           <PolarAngleAxis
             dataKey="kind"
             tick={{ fill: "#FFFFFF", fontSize: "12px", fontWeight: "600" }}
