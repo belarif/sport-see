@@ -1,31 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchUserDurationSession } from "../services/Api";
+import { standardizedDurationSessionData } from "../wrappers/Data";
 import {
   LineChart,
   Line,
   ResponsiveContainer,
   XAxis,
   Tooltip,
-  Legend,
+  ReferenceArea,
 } from "recharts";
 
 const DurationSession = () => {
-  const [durationSession, setDurationSession] = useState({});
+  const [durationSession, setDurationSession] = useState([]);
   let { userId } = useParams();
 
   useEffect(() => {
-    let weekDays = ["L", "M", "M", "J", "V", "S", "D"];
-
     const getUserDurationSession = async () => {
       const res = await fetchUserDurationSession(userId);
-
-      setDurationSession(
-        res.sessions.map((item, index) => ({
-          ...item,
-          day: weekDays[index],
-        }))
-      );
+      setDurationSession(standardizedDurationSessionData(res));
     };
 
     getUserDurationSession();
@@ -43,29 +36,53 @@ const DurationSession = () => {
     return null;
   };
 
-  const LineChartLegend = () => {
-    return <p className="title">Durée moyenne des sessions</p>;
-  };
-
   return (
     <React.Fragment>
       <ResponsiveContainer>
-        <LineChart width={300} height={100} data={durationSession}>
+        <LineChart
+          width={300}
+          height={100}
+          data={durationSession}
+          margin={{ left: "0", right: "0" }}
+        >
+          <Line
+            type="basis"
+            dataKey="sessionLength"
+            stroke="#ffffff"
+            strokeWidth={2}
+            dot={false}
+            tick={{ fill: "#ffffff" }}
+          />
           <XAxis
             dataKey="day"
             tickLine={false}
             axisLine={false}
-            tick={{ fill: "#FFFFFF", opacity: "0.8", fontSize: "13px" }}
+            tick={{
+              stroke: "#ffffff",
+              opacity: "0.6",
+              fontSize: "13px",
+            }}
+            interval="preserveStartEnd"
           />
           <Tooltip content={<LineChartTooltip />} />
-          <Legend verticalAlign="top" align="left" content={LineChartLegend} />
-          <Line
-            type="monotone"
-            dataKey="sessionLength"
-            stroke="#8884d8"
-            strokeWidth={2}
-            dot={false}
-            tick={{ fill: "#FFFFFF" }}
+          <text
+            x="10%"
+            y="16%"
+            style={{
+              fontSize: 15,
+              fontWeight: 700,
+              fill: "#ffffff",
+            }}
+          >
+            Durée moyenne des sessions
+          </text>
+          <ReferenceArea
+            x1={"S"}
+            x2={"D"}
+            y1={0}
+            y2={100}
+            stroke="#000"
+            strokeOpacity={0.3}
           />
         </LineChart>
       </ResponsiveContainer>

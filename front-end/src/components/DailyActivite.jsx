@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchUserDailyActivity } from "../services/Api";
 import { useParams } from "react-router-dom";
+import { standardizedDailyActivityData } from "../wrappers/Data";
 import {
   BarChart,
   Bar,
@@ -30,12 +31,7 @@ const DailyActivity = () => {
   useEffect(() => {
     const getUserDailyActivity = async () => {
       const res = await fetchUserDailyActivity(userId);
-      setActivity(
-        res.sessions.map((item, index) => ({
-          ...item,
-          index: index + 1,
-        }))
-      );
+      setActivity(standardizedDailyActivityData(res));
     };
 
     getUserDailyActivity();
@@ -112,11 +108,7 @@ const DailyActivity = () => {
             tick={{ stroke: "#9B9eac" }}
           />
           <Tooltip content={<BarChartTooltip />} />
-          <Legend
-            verticalAlign="top"
-            // iconType="circle"
-            content={BarChartLegend}
-          />
+          <Legend verticalAlign="top" content={BarChartLegend} />
           <Bar
             name="Poids (kg)"
             dataKey="kilogram"

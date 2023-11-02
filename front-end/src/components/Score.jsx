@@ -1,20 +1,10 @@
 import React from "react";
+import { standardizedScoreData } from "../wrappers/Data";
 import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
 
 const Score = ({ userData }) => {
-  const objectProperties = Object.keys(userData);
-  const scoreProperty = objectProperties[2];
-
-  if (scoreProperty === "todayScore") {
-    Object.defineProperty(
-      userData,
-      "score",
-      Object.getOwnPropertyDescriptor(userData, "todayScore")
-    );
-  }
-
+  standardizedScoreData(userData);
   const scoreInPercent = userData.score * 100;
-
   const data = [
     {
       score: 100,

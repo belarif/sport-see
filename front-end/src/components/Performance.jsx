@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchUserPerformance } from "../services/Api";
+import { standardizedPerformanceData } from "../wrappers/Data";
 import {
   Radar,
   RadarChart,
@@ -16,13 +17,7 @@ const Performance = () => {
   useEffect(() => {
     const getUserPerformance = async () => {
       const res = await fetchUserPerformance(userId);
-
-      setPerformance(
-        res.data.map((item, index) => ({
-          ...item,
-          kind: Object.values(res.kind)[index],
-        }))
-      );
+      setPerformance(standardizedPerformanceData(res));
     };
 
     getUserPerformance();
