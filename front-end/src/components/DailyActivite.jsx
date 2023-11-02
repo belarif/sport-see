@@ -52,24 +52,21 @@ const DailyActivity = () => {
 
   const BarChartLegend = () => {
     return (
-      <div className="title-legend">
-        <h1>Activité quotidienne</h1>
-        <ul className="barChart-legend">
-          {legendData.map((entry, index) => (
-            <li style={{ color: entry.color }} key={`item-${index}`}>
-              <span
-                style={{
-                  color: "#74798C",
-                  fontSize: "14px",
-                  fontWeight: "700",
-                }}
-              >
-                {entry.itemValue}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <ul className="barChart-legend">
+        {legendData.map((entry, index) => (
+          <li style={{ color: entry.color }} key={`item-${index}`}>
+            <span
+              style={{
+                color: "#74798C",
+                fontSize: "14px",
+                fontWeight: "700",
+              }}
+            >
+              {entry.itemValue}
+            </span>
+          </li>
+        ))}
+      </ul>
     );
   };
 
@@ -108,6 +105,17 @@ const DailyActivity = () => {
             tick={{ stroke: "#9B9eac" }}
           />
           <Tooltip content={<BarChartTooltip />} />
+          <text
+            x="4%"
+            y="15%"
+            style={{
+              fontSize: "16px",
+              fontWeight: "bolder",
+              fill: "#20253A",
+            }}
+          >
+            Activité quotidienne
+          </text>
           <Legend verticalAlign="top" content={BarChartLegend} />
           <Bar
             name="Poids (kg)"
