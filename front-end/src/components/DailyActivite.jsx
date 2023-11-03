@@ -94,6 +94,9 @@ const DailyActivity = () => {
             scale="auto"
             stroke="#dedede"
             tick={{ stroke: "#9B9eac" }}
+            type="number"
+            domain={["dataMin", "dataMax"]}
+            tickCount={7}
           />
           <YAxis
             axisLine={false}
@@ -104,7 +107,7 @@ const DailyActivity = () => {
             domain={[0, "dataMax"]}
             tick={{ stroke: "#9B9eac" }}
           />
-          <Tooltip content={<BarChartTooltip />} />
+          <Tooltip content={<BarChartTooltip />} cursor={{ opacity: "0.5" }} />
           <text
             x="4%"
             y="15%"
