@@ -23,9 +23,13 @@ Après exécution de la commande, le projet sera copié dans le répertoire `www
 ### Installation des dépendances
 
 1. backend :
+   positionnez vous sur le chemin :
+   `c:/wamp64/www/sport-see/back-end` puis exécutez la commande :
    `yarn`
 
 2. frontend :
+   positionnez vous sur le chemin :
+   `c:/wamp64/www/sport-see/front-end` puis exécutez la commande :
    `yarn`
 
 ### Lancement de l'app
