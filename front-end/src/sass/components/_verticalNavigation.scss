@@ -1,13 +1,12 @@
 .verticalNav {
   position: absolute;
-  top: 0;
+  top: 91px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   gap: 60px;
   width: 91px;
-  min-height: 780px;
   height: 100%;
   z-index: 0;
   background-color: #020203;

@@ -27,7 +27,11 @@ const Performance = () => {
     <React.Fragment>
       <ResponsiveContainer>
         <RadarChart cx="50%" cy="50%" outerRadius="80%" data={performance}>
-          <PolarGrid radialLines={false} />
+          <PolarGrid
+            radialLines={false}
+            polarRadius={["10", "24", "47", "69", "92"]}
+          />
+
           <PolarAngleAxis
             dataKey="kind"
             tick={{ fill: "#FFFFFF", fontSize: "12px", fontWeight: "600" }}
