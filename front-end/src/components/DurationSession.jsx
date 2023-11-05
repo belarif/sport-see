@@ -8,7 +8,7 @@ import {
   ResponsiveContainer,
   XAxis,
   Tooltip,
-  ReferenceArea,
+  Legend,
 } from "recharts";
 
 const DurationSession = () => {
@@ -36,19 +36,22 @@ const DurationSession = () => {
     return null;
   };
 
+  const LineChartLegend = () => {
+    return <p className="title">Durée moyenne des sessions</p>;
+  };
+
   return (
     <React.Fragment>
       <ResponsiveContainer>
         <LineChart
-          width={300}
-          height={100}
           data={durationSession}
-          margin={{ left: "0", right: "0" }}
+          margin={{ bottom: 0, left: 0, right: 0, top: 25 }}
         >
           <Line
-            type="basis"
+            type="bump"
             dataKey="sessionLength"
             stroke="#ffffff"
+            opacity={0.6}
             strokeWidth={2}
             dot={false}
             tick={{ fill: "#ffffff" }}
@@ -64,26 +67,8 @@ const DurationSession = () => {
             }}
             interval="preserveStartEnd"
           />
-          <Tooltip content={<LineChartTooltip />} />
-          <text
-            x="10%"
-            y="16%"
-            style={{
-              fontSize: 15,
-              fontWeight: 700,
-              fill: "#ffffff",
-            }}
-          >
-            Durée moyenne des sessions
-          </text>
-          <ReferenceArea
-            x1={"S"}
-            x2={"D"}
-            y1={0}
-            y2={100}
-            stroke="#000"
-            strokeOpacity={0.3}
-          />
+          <Tooltip content={<LineChartTooltip />} cursor={false} />
+          <Legend verticalAlign="top" align="left" content={LineChartLegend} />
         </LineChart>
       </ResponsiveContainer>
     </React.Fragment>
