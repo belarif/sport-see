@@ -36,12 +36,7 @@ const Performance = () => {
             dataKey="kind"
             tick={{ fill: "#FFFFFF", fontSize: "12px", fontWeight: "600" }}
           />
-          <Radar
-            dataKey="value"
-            stroke="#8884d8"
-            fill="#E60000"
-            fillOpacity={0.6}
-          />
+          <Radar dataKey="value" fill="#E60000" fillOpacity={0.6} />
         </RadarChart>
       </ResponsiveContainer>
     </React.Fragment>
