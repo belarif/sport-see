@@ -13,7 +13,7 @@ const Score = ({ userData }) => {
   const data = [
     {
       score: 100,
-      fill: "#fff333",
+      fill: "#ffffff",
     },
     {
       score: scoreInPercent,
