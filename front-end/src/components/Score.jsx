@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { standardizedScoreData } from "../wrappers/Data";
 import {
   RadialBarChart,
@@ -77,6 +78,10 @@ const Score = ({ userData }) => {
       </ResponsiveContainer>
     </React.Fragment>
   );
+};
+
+Score.propTypes = {
+  userData: PropTypes.object,
 };
 
 export default Score;

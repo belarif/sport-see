@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import caloriesIcon from "../assets/icons/calories-icon.svg";
 import proteinsIcon from "../assets/icons/protein-icon.svg";
 import glucidesIcon from "../assets/icons/carbs-icon.svg";
@@ -43,6 +44,10 @@ const Card = ({ keyData }) => {
       ))}
     </React.Fragment>
   );
+};
+
+Card.propTypes = {
+  keyData: PropTypes.object,
 };
 
 export default Card;
