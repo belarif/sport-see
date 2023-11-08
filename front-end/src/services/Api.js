@@ -1,5 +1,11 @@
 const baseUrl = "http://localhost:3000/user/";
 
+/**
+ * request user data with fetch method
+ *
+ * @param { Number } userId
+ * @return { object | error }
+ */
 const fetchUserData = async (userId) => {
   try {
     const response = await fetch(`${baseUrl}${userId}`);
@@ -11,6 +17,12 @@ const fetchUserData = async (userId) => {
   }
 };
 
+/**
+ * request daily activity data with fetch method
+ *
+ * @param { Number } userId
+ * @return { object | error }
+ */
 const fetchUserDailyActivity = async (userId) => {
   try {
     const response = await fetch(`${baseUrl}${userId}/activity`);
@@ -22,6 +34,12 @@ const fetchUserDailyActivity = async (userId) => {
   }
 };
 
+/**
+ * request performance data with fetch method
+ *
+ * @param { Number } userId
+ * @return { object | error }
+ */
 const fetchUserPerformance = async (userId) => {
   try {
     const response = await fetch(`${baseUrl}${userId}/performance`);
@@ -33,6 +51,12 @@ const fetchUserPerformance = async (userId) => {
   }
 };
 
+/**
+ * request duration session data with fetch method
+ *
+ * @param { Number } userId
+ * @return { object | error }
+ */
 const fetchUserDurationSession = async (userId) => {
   try {
     const response = await fetch(`${baseUrl}${userId}/average-sessions`);

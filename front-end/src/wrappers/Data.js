@@ -1,4 +1,8 @@
-// standardization duration session data
+/**
+ *
+ * @param { object } res
+ * @return { Array }
+ */
 export const standardizedDurationSessionData = (res) => {
   let weekDays = ["L", "M", "M", "J", "V", "S", "D"];
 
@@ -8,7 +12,11 @@ export const standardizedDurationSessionData = (res) => {
   }));
 };
 
-// standardization daily activity data
+/**
+ *
+ * @param { object } res
+ * @return { Array }
+ */
 export const standardizedDailyActivityData = (res) => {
   return res.sessions.map((item, index) => ({
     ...item,
@@ -16,7 +24,11 @@ export const standardizedDailyActivityData = (res) => {
   }));
 };
 
-// standardization performance data
+/**
+ *
+ * @param { object } res
+ * @return { Array }
+ */
 export const standardizedPerformanceData = (res) => {
   return res.data.map((item, index) => ({
     ...item,
@@ -24,7 +36,10 @@ export const standardizedPerformanceData = (res) => {
   }));
 };
 
-// standardization score data
+/**
+ *
+ * @param { object } userData
+ */
 export const standardizedScoreData = (userData) => {
   const objectProperties = Object.keys(userData);
   const scoreProperty = objectProperties[2];

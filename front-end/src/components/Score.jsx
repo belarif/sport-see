@@ -8,6 +8,11 @@ import {
   Legend,
 } from "recharts";
 
+/**
+ *
+ * @param {*} param0
+ * @return { HTMLElement }
+ */
 const Score = ({ userData }) => {
   standardizedScoreData(userData);
   const scoreInPercent = userData.score * 100;
@@ -28,6 +33,11 @@ const Score = ({ userData }) => {
 
   const legendData = [data[1]];
 
+  /**
+   * customizing RadialBar legend
+   *
+   * @returns { object }
+   */
   const RadialBarLegend = () => {
     return (
       <ul className="radialBar-legend">

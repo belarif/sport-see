@@ -32,7 +32,7 @@ Après exécution de la commande, le projet sera copié dans le répertoire `www
    `c:/wamp64/www/sport-see/front-end` puis exécutez la commande :
    `yarn`
 
-### Lancement de l'app
+### Lancement de l'application
 
 1. backend :
    `yarn dev`

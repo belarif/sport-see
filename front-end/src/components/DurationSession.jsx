@@ -11,6 +11,9 @@ import {
   Legend,
 } from "recharts";
 
+/**
+ * @return { HTMLElement }
+ */
 const DurationSession = () => {
   const [durationSession, setDurationSession] = useState([]);
   let { userId } = useParams();
@@ -24,6 +27,11 @@ const DurationSession = () => {
     getUserDurationSession();
   }, [userId]);
 
+  /**
+   *
+   * @param {*} param0
+   * @return { HTMLElement }
+   */
   const LineChartTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
@@ -36,6 +44,11 @@ const DurationSession = () => {
     return null;
   };
 
+  /**
+   * customizing LineChart Legend
+   *
+   * @return { HTMLElement }
+   */
   const LineChartLegend = () => {
     return <p className="title">Durée moyenne des sessions</p>;
   };

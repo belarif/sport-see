@@ -37,6 +37,11 @@ const DailyActivity = () => {
     getUserDailyActivity();
   }, [userId]);
 
+  /**
+   * customizing BarChart ToolTip
+   *
+   * @return { (HTMLElement | null) }
+   */
   const BarChartTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
@@ -50,6 +55,11 @@ const DailyActivity = () => {
     return null;
   };
 
+  /**
+   * customizing BarChart Legend
+   *
+   * @return { HTMLElement }
+   */
   const BarChartLegend = () => {
     return (
       <ul className="barChart-legend">
