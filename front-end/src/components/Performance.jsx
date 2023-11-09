@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchUserPerformance } from "../services/Api";
-import { standardizedPerformanceData } from "../wrappers/Data";
+import { standardizedPerformanceData } from "../mappers/Data";
 import {
   Radar,
   RadarChart,

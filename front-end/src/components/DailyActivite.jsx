@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchUserDailyActivity } from "../services/Api";
 import { useParams } from "react-router-dom";
-import { standardizedDailyActivityData } from "../wrappers/Data";
+import { standardizedDailyActivityData } from "../mappers/Data";
 import {
   BarChart,
   Bar,

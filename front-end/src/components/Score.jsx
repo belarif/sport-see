@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { standardizedScoreData } from "../wrappers/Data";
+import { standardizedScoreData } from "../mappers/Data";
 import {
   RadialBarChart,
   RadialBar,

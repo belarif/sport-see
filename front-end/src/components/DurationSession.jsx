@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchUserDurationSession } from "../services/Api";
-import { standardizedDurationSessionData } from "../wrappers/Data";
+import { standardizedDurationSessionData } from "../mappers/Data";
 import {
   LineChart,
   Line,
@@ -9,7 +9,6 @@ import {
   XAxis,
   Tooltip,
   Legend,
-  ReferenceArea,
 } from "recharts";
 
 const DurationSession = () => {
@@ -78,21 +77,12 @@ const DurationSession = () => {
             }}
             interval="preserveStartEnd"
           />
-          <Tooltip content={<LineChartTooltip />} offset={5} />
+          <Tooltip content={<LineChartTooltip />} offset={5} cursor={false} />
           <Legend verticalAlign="top" align="left" content={LineChartLegend} />
-          <ReferenceArea
-            x1={4}
-            x2={5}
-            y1={30}
-            y2={60}
-            stroke="gray"
-            strokeOpacity={0.5}
-          />
         </LineChart>
       </ResponsiveContainer>
     </React.Fragment>
   );
 };
 
-console.log(DurationSession);
 export default DurationSession;
