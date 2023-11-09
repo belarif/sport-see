@@ -10,9 +10,6 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-/**
- * @return { HTMLElement }
- */
 const Performance = () => {
   const [performance, setPerformance] = useState([]);
   let { userId } = useParams();

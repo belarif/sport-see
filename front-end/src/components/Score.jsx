@@ -8,11 +8,6 @@ import {
   Legend,
 } from "recharts";
 
-/**
- *
- * @param {*} param0
- * @return { HTMLElement }
- */
 const Score = ({ userData }) => {
   standardizedScoreData(userData);
   const scoreInPercent = userData.score * 100;

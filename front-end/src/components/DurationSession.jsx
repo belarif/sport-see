@@ -9,11 +9,9 @@ import {
   XAxis,
   Tooltip,
   Legend,
+  ReferenceArea,
 } from "recharts";
 
-/**
- * @return { HTMLElement }
- */
 const DurationSession = () => {
   const [durationSession, setDurationSession] = useState([]);
   let { userId } = useParams();
@@ -80,12 +78,21 @@ const DurationSession = () => {
             }}
             interval="preserveStartEnd"
           />
-          <Tooltip content={<LineChartTooltip />} cursor={false} />
+          <Tooltip content={<LineChartTooltip />} offset={5} />
           <Legend verticalAlign="top" align="left" content={LineChartLegend} />
+          <ReferenceArea
+            x1={4}
+            x2={5}
+            y1={30}
+            y2={60}
+            stroke="gray"
+            strokeOpacity={0.5}
+          />
         </LineChart>
       </ResponsiveContainer>
     </React.Fragment>
   );
 };
 
+console.log(DurationSession);
 export default DurationSession;

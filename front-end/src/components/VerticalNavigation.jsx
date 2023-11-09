@@ -4,9 +4,6 @@ import swiIcon from "../assets/icons/swim-icon.svg";
 import cyclistIcon from "../assets/icons/cyclist-icon.svg";
 import dumbbellIcon from "../assets/icons/dumbbell-icon.svg";
 
-/**
- * @return { HTMLElement }
- */
 const VerticalNavigation = () => {
   return (
     <nav className="verticalNav">

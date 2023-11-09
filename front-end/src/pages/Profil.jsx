@@ -11,9 +11,6 @@ import Card from "../components/Card";
 import { fetchUserData } from "../services/Api";
 import DailyActivity from "../components/DailyActivite";
 
-/**
- * @return { HTMLElement }
- */
 const Profil = () => {
   const [userData, setUserData] = useState({});
   const [loading, setLoading] = useState(false);
