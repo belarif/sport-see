@@ -2,14 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchUserDurationSession } from "../services/Api";
 import { standardizedDurationSessionData } from "../mappers/Data";
-import {
-  LineChart,
-  Line,
-  ResponsiveContainer,
-  XAxis,
-  Tooltip,
-  Legend,
-} from "recharts";
+import { LineChart, Line, ResponsiveContainer, XAxis, Tooltip } from "recharts";
 
 const DurationSession = () => {
   const [durationSession, setDurationSession] = useState([]);
@@ -41,21 +34,12 @@ const DurationSession = () => {
     return null;
   };
 
-  /**
-   * customizing LineChart Legend
-   *
-   * @return { HTMLElement }
-   */
-  const LineChartLegend = () => {
-    return <p className="title">Durée moyenne des sessions</p>;
-  };
-
   return (
     <React.Fragment>
       <ResponsiveContainer>
         <LineChart
           data={durationSession}
-          margin={{ bottom: 0, left: 0, right: 0, top: 25 }}
+          margin={{ bottom: 0, left: 0, right: 0, top: 60 }}
         >
           <Line
             type="bump"
@@ -78,7 +62,18 @@ const DurationSession = () => {
             interval="preserveStartEnd"
           />
           <Tooltip content={<LineChartTooltip />} offset={5} cursor={false} />
-          <Legend verticalAlign="top" align="left" content={LineChartLegend} />
+          <text
+            x="10%"
+            y="16%"
+            style={{
+              fontSize: 15,
+              fontWeight: 700,
+              fill: "#ffffff",
+              opacity: 0.6,
+            }}
+          >
+            Durée moyenne des sessions
+          </text>
         </LineChart>
       </ResponsiveContainer>
     </React.Fragment>
