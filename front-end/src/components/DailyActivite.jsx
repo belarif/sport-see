@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { fetchUserDailyActivity } from "../services/Api";
 import { useParams } from "react-router-dom";
 import { standardizedDailyActivityData } from "../mappers/Data";
+import { userMockActivityData } from "../services/Mock";
 import {
   BarChart,
   Bar,
@@ -30,7 +31,12 @@ const DailyActivity = () => {
 
   useEffect(() => {
     const getUserDailyActivity = async () => {
-      const res = await fetchUserDailyActivity(userId);
+      let res = [];
+
+      process.env.REACT_APP_SOURCE_DATA === "api"
+        ? (res = await fetchUserDailyActivity(userId))
+        : (res = await userMockActivityData(userId));
+
       setActivity(standardizedDailyActivityData(res));
     };
 

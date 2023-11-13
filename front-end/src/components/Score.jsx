@@ -10,6 +10,7 @@ import {
 
 const Score = ({ userData }) => {
   standardizedScoreData(userData);
+
   const scoreInPercent = userData.score * 100;
   const data = [
     {

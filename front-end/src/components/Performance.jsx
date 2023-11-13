@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchUserPerformance } from "../services/Api";
 import { standardizedPerformanceData } from "../mappers/Data";
+import { userMockPerformanceData } from "../services/Mock";
 import {
   Radar,
   RadarChart,
@@ -16,7 +17,12 @@ const Performance = () => {
 
   useEffect(() => {
     const getUserPerformance = async () => {
-      const res = await fetchUserPerformance(userId);
+      let res = [];
+
+      process.env.REACT_APP_SOURCE_DATA === "api"
+        ? (res = await fetchUserPerformance(userId))
+        : (res = await userMockPerformanceData(userId));
+
       setPerformance(standardizedPerformanceData(res));
     };
 
@@ -31,7 +37,6 @@ const Performance = () => {
             radialLines={false}
             polarRadius={["10", "24", "47", "69", "92"]}
           />
-
           <PolarAngleAxis
             dataKey="kind"
             tick={{ fill: "#FFFFFF", fontSize: "12px", fontWeight: "600" }}

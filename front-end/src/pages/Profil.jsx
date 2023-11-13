@@ -10,6 +10,7 @@ import DurationSession from "../components/DurationSession";
 import Card from "../components/Card";
 import { fetchUserData } from "../services/Api";
 import DailyActivity from "../components/DailyActivite";
+import { userMockData } from "../services/Mock";
 
 const Profil = () => {
   const [userData, setUserData] = useState({});
@@ -23,8 +24,14 @@ const Profil = () => {
 
   useEffect(() => {
     setLoading(true);
+
     const getUserData = async () => {
-      const res = await fetchUserData(userId);
+      let res = [];
+
+      process.env.REACT_APP_SOURCE_DATA === "api"
+        ? (res = await fetchUserData(userId))
+        : (res = await userMockData(userId));
+
       setUserData(res);
 
       if (res.error) {

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchUserDurationSession } from "../services/Api";
 import { standardizedDurationSessionData } from "../mappers/Data";
 import { LineChart, Line, ResponsiveContainer, XAxis, Tooltip } from "recharts";
+import { userMockAverageSessionsData } from "../services/Mock";
 
 const DurationSession = () => {
   const [durationSession, setDurationSession] = useState([]);
@@ -10,7 +11,12 @@ const DurationSession = () => {
 
   useEffect(() => {
     const getUserDurationSession = async () => {
-      const res = await fetchUserDurationSession(userId);
+      let res = [];
+
+      process.env.REACT_APP_SOURCE_DATA === "api"
+        ? (res = await fetchUserDurationSession(userId))
+        : (res = await userMockAverageSessionsData(userId));
+
       setDurationSession(standardizedDurationSessionData(res));
     };
 
