@@ -1,22 +1,29 @@
-.barChart-tooltip {
-  padding: 4px 6px;
-  width: auto;
-  text-align: center;
-  background-color: #e60000;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 700;
-}
+.dailyActivity {
+  border-radius: 3px;
+  width: 100%;
+  background-color: #fbfbfb;
+  height: 57%;
 
-.barChart-legend {
-  margin-top: 0;
-  margin-bottom: 50px;
-  padding-left: 0;
-  display: flex;
-  justify-content: flex-end;
-  gap: 50px;
+  .barChart-tooltip {
+    padding: 4px 6px;
+    width: auto;
+    text-align: center;
+    background-color: #e60000;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+  }
 
-  li::marker {
-    font-size: 1.6em;
+  .barChart-legend {
+    margin-top: 0;
+    margin-bottom: 50px;
+    padding-left: 0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 50px;
+
+    li::marker {
+      font-size: 1.6em;
+    }
   }
 }
