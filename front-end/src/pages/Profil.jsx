@@ -21,7 +21,8 @@ const Profil = () => {
   useEffect(() => {
     const getUserData = async () => {
       try {
-        let res = [];
+        let res = {};
+
         process.env.REACT_APP_SOURCE_DATA === "api"
           ? (res = await fetchUserData(userId))
           : (res = await userMockData(userId));
@@ -29,9 +30,13 @@ const Profil = () => {
         setUserData(res);
         setLoading(false);
       } catch (error) {
-        setError(
-          "impossible de récupérer les données de l'API pour cette section"
-        );
+        if (error.name === "Error") {
+          setError(error.message);
+        } else if (error.name === "TypeError") {
+          setError(
+            "impossible de récupérer les données de l'API user main data"
+          );
+        }
         setLoading(false);
       }
     };
@@ -69,12 +74,12 @@ const Profil = () => {
               <DurationSession />
               <Performance />
               <div className="card card-lightGray">
-                <Score userData={userData} error={error} />
+                <Score userData={userData} />
               </div>
             </div>
           </article>
           <article className="rightContent">
-            <Card keyData={userData.keyData} error={error} />
+            <Card keyData={userData.keyData} />
           </article>
         </article>
       </main>

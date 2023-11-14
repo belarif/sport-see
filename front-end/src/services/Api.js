@@ -8,6 +8,11 @@ const baseUrl = "http://localhost:3000/user/";
  */
 const fetchUserData = async (userId) => {
   const response = await fetch(`${baseUrl}${userId}`);
+
+  if (!response.ok) {
+    throw Error("L'utilisateur demandé n'existe pas");
+  }
+
   const { data } = await response.json();
 
   return data;
@@ -21,6 +26,11 @@ const fetchUserData = async (userId) => {
  */
 const fetchUserDailyActivity = async (userId) => {
   const response = await fetch(`${baseUrl}${userId}/activity`);
+
+  if (!response.ok) {
+    throw Error("L'utilisateur demandé n'existe pas");
+  }
+
   const { data } = await response.json();
 
   return data;
@@ -34,6 +44,11 @@ const fetchUserDailyActivity = async (userId) => {
  */
 const fetchUserPerformance = async (userId) => {
   const response = await fetch(`${baseUrl}${userId}/performance`);
+
+  if (!response.ok) {
+    throw Error("L'utilisateur demandé n'existe pas");
+  }
+
   const { data } = await response.json();
 
   return data;
@@ -47,6 +62,11 @@ const fetchUserPerformance = async (userId) => {
  */
 const fetchUserDurationSession = async (userId) => {
   const response = await fetch(`${baseUrl}${userId}/average-sessions`);
+
+  if (!response.ok) {
+    throw Error("L'utilisateur demandé n'existe pas");
+  }
+
   const { data } = await response.json();
 
   return data;

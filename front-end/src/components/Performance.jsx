@@ -27,9 +27,9 @@ const Performance = () => {
 
         setPerformance(standardizedPerformanceData(res));
       } catch (error) {
-        setError(
-          "impossible de récupérer les données de l'API pour cette section"
-        );
+        if (error.name === "TypeError") {
+          setError("impossible de récupérer les données de l'API performance");
+        }
       }
     };
 

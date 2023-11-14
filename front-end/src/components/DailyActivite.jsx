@@ -41,9 +41,11 @@ const DailyActivity = () => {
 
         setActivity(standardizedDailyActivityData(res));
       } catch (error) {
-        setError(
-          "impossible de récupérer les données de l'API pour cette section"
-        );
+        if (error.name === "TypeError") {
+          setError(
+            "impossible de récupérer les données de l'API activité quotidienne"
+          );
+        }
       }
     };
 

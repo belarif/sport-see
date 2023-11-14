@@ -8,7 +8,7 @@ import {
   Legend,
 } from "recharts";
 
-const Score = ({ userData, error }) => {
+const Score = ({ userData }) => {
   standardizedScoreData(userData);
 
   const scoreInPercent = userData.score * 100;
@@ -51,7 +51,6 @@ const Score = ({ userData, error }) => {
 
   return (
     <div className="card card-lightGray">
-      {error && <div className="errorMessage">{error}</div>}
       <ResponsiveContainer>
         <RadialBarChart
           data={data}

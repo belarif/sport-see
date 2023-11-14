@@ -5,7 +5,7 @@ import proteinsIcon from "../assets/icons/protein-icon.svg";
 import glucidesIcon from "../assets/icons/carbs-icon.svg";
 import lipidesIcon from "../assets/icons/fat-icon.svg";
 
-const Card = ({ keyData, error }) => {
+const Card = ({ keyData }) => {
   const nutrients = [
     {
       name: "Calories",
@@ -31,7 +31,6 @@ const Card = ({ keyData, error }) => {
 
   return (
     <React.Fragment>
-      {error && <div className="errorMessage">{error}</div>}
       {nutrients.map((nutrient, index) => (
         <div className="box" key={index}>
           <figure>
