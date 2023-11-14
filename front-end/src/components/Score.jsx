@@ -8,7 +8,7 @@ import {
   Legend,
 } from "recharts";
 
-const Score = ({ userData }) => {
+const Score = ({ userData, error }) => {
   standardizedScoreData(userData);
 
   const scoreInPercent = userData.score * 100;
@@ -51,6 +51,7 @@ const Score = ({ userData }) => {
 
   return (
     <div className="card card-lightGray">
+      {error && <div className="errorMessage">{error}</div>}
       <ResponsiveContainer>
         <RadialBarChart
           data={data}
@@ -88,6 +89,7 @@ const Score = ({ userData }) => {
 
 Score.propTypes = {
   userData: PropTypes.object,
+  error: PropTypes.string,
 };
 
 export default Score;

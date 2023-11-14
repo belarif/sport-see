@@ -68,11 +68,13 @@ const Profil = () => {
             <div className="informationCards">
               <DurationSession />
               <Performance />
-              <Score userData={userData} />
+              <div className="card card-lightGray">
+                <Score userData={userData} error={error} />
+              </div>
             </div>
           </article>
           <article className="rightContent">
-            <Card keyData={userData.keyData} />
+            <Card keyData={userData.keyData} error={error} />
           </article>
         </article>
       </main>
