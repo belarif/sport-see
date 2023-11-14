@@ -3,15 +3,30 @@ import { useParams } from "react-router-dom";
 import { fetchUserDurationSession } from "../services/Api";
 import { standardizedDurationSessionData } from "../mappers/Data";
 import { LineChart, Line, ResponsiveContainer, XAxis, Tooltip } from "recharts";
+import { userMockAverageSessionsData } from "../services/Mock";
 
 const DurationSession = () => {
   const [durationSession, setDurationSession] = useState([]);
+  const [error, setError] = useState(null);
   let { userId } = useParams();
 
   useEffect(() => {
     const getUserDurationSession = async () => {
-      const res = await fetchUserDurationSession(userId);
-      setDurationSession(standardizedDurationSessionData(res));
+      try {
+        let res = [];
+
+        process.env.REACT_APP_SOURCE_DATA === "api"
+          ? (res = await fetchUserDurationSession(userId))
+          : (res = await userMockAverageSessionsData(userId));
+
+        setDurationSession(standardizedDurationSessionData(res));
+      } catch (error) {
+        if (error.name === "TypeError") {
+          setError(
+            "impossible de récupérer les données de l'API durée des sessions"
+          );
+        }
+      }
     };
 
     getUserDurationSession();
@@ -35,7 +50,12 @@ const DurationSession = () => {
   };
 
   return (
-    <React.Fragment>
+    <div className="card card-orange">
+      {error && (
+        <div className="errorMessage" style={{ color: "black" }}>
+          {error}
+        </div>
+      )}
       <ResponsiveContainer>
         <LineChart
           data={durationSession}
@@ -76,7 +96,7 @@ const DurationSession = () => {
           </text>
         </LineChart>
       </ResponsiveContainer>
-    </React.Fragment>
+    </div>
   );
 };
 

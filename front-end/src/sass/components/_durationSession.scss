@@ -1,13 +1,22 @@
-.lineChart-tooltip {
-  padding: 4px 6px;
-  width: auto;
-  text-align: center;
-  background-color: #ffffff;
-  color: #000000;
-  font-size: 12px;
-  font-weight: 700;
+.card {
+  border-radius: 3px;
+  width: 33.33%;
 
-  p {
-    margin: 5px 0;
+  &-orange {
+    background-color: #ff0000;
+  }
+
+  .lineChart-tooltip {
+    padding: 4px 6px;
+    width: auto;
+    text-align: center;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 12px;
+    font-weight: 700;
+
+    p {
+      margin: 5px 0;
+    }
   }
 }

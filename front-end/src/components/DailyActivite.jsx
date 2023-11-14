@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { fetchUserDailyActivity } from "../services/Api";
 import { useParams } from "react-router-dom";
 import { standardizedDailyActivityData } from "../mappers/Data";
+import { userMockActivityData } from "../services/Mock";
 import {
   BarChart,
   Bar,
@@ -15,6 +16,7 @@ import {
 
 const DailyActivity = () => {
   const [activity, setActivity] = useState([]);
+  const [error, setError] = useState(null);
   let { userId } = useParams();
 
   const legendData = [
@@ -30,8 +32,21 @@ const DailyActivity = () => {
 
   useEffect(() => {
     const getUserDailyActivity = async () => {
-      const res = await fetchUserDailyActivity(userId);
-      setActivity(standardizedDailyActivityData(res));
+      try {
+        let res = [];
+
+        process.env.REACT_APP_SOURCE_DATA === "api"
+          ? (res = await fetchUserDailyActivity(userId))
+          : (res = await userMockActivityData(userId));
+
+        setActivity(standardizedDailyActivityData(res));
+      } catch (error) {
+        if (error.name === "TypeError") {
+          setError(
+            "impossible de récupérer les données de l'API activité quotidienne"
+          );
+        }
+      }
     };
 
     getUserDailyActivity();
@@ -81,72 +96,82 @@ const DailyActivity = () => {
   };
 
   return (
-    <React.Fragment>
-      <ResponsiveContainer>
-        <BarChart
-          data={activity}
-          margin={{
-            top: 30,
-            right: 30,
-            left: 30,
-            bottom: 30,
-          }}
-        >
-          <CartesianGrid
-            strokeDasharray="3 3"
-            vertical={false}
-            stroke="#dedede"
-          />
-          <XAxis
-            dataKey="index"
-            tickLine={false}
-            tickMargin={20}
-            scale="auto"
-            stroke="#dedede"
-            tick={{ stroke: "#9B9eac" }}
-            type="number"
-            domain={["dataMin", "dataMax"]}
-            tickCount={7}
-          />
-          <YAxis
-            axisLine={false}
-            tickLine={false}
-            orientation="right"
-            tickMargin={45}
-            type="number"
-            domain={[0, "dataMax"]}
-            tick={{ stroke: "#9B9eac" }}
-          />
-          <Tooltip content={<BarChartTooltip />} cursor={{ opacity: "0.5" }} />
-          <text
-            x="4%"
-            y="15%"
-            style={{
-              fontSize: "16px",
-              fontWeight: "bolder",
-              fill: "#20253A",
+    <div className="dailyActivity">
+      {error && (
+        <div className="errorMessage" style={{ color: "red" }}>
+          {error}
+        </div>
+      )}
+      {activity && (
+        <ResponsiveContainer height={300}>
+          <BarChart
+            data={activity}
+            margin={{
+              top: 30,
+              right: 30,
+              left: 30,
+              bottom: 30,
             }}
           >
-            Activité quotidienne
-          </text>
-          <Legend verticalAlign="top" content={BarChartLegend} />
-          <Bar
-            name="Poids (kg)"
-            dataKey="kilogram"
-            fill="#282d30"
-            barSize={7}
-            radius={[20, 20, 0, 0]}
-          />
-          <Bar
-            name="Calories brulées (kCalories)"
-            dataKey="calories"
-            fill="#e60000"
-            barSize={7}
-            radius={[20, 20, 0, 0]}
-          />
-        </BarChart>
-      </ResponsiveContainer>
-    </React.Fragment>
+            <CartesianGrid
+              strokeDasharray="3 3"
+              vertical={false}
+              stroke="#dedede"
+            />
+            <XAxis
+              dataKey="index"
+              tickLine={false}
+              tickMargin={20}
+              scale="auto"
+              stroke="#dedede"
+              tick={{ stroke: "#9B9eac" }}
+              type="number"
+              domain={["dataMin", "dataMax"]}
+              tickCount={7}
+            />
+            <YAxis
+              axisLine={false}
+              tickLine={false}
+              orientation="right"
+              tickMargin={45}
+              type="number"
+              domain={[0, "dataMax"]}
+              tick={{ stroke: "#9B9eac" }}
+            />
+            <Tooltip
+              content={<BarChartTooltip />}
+              cursor={{ opacity: "0.5" }}
+            />
+            <text
+              x="4%"
+              y="15%"
+              style={{
+                fontSize: "16px",
+                fontWeight: "bolder",
+                fill: "#20253A",
+              }}
+            >
+              Activité quotidienne
+            </text>
+            <Legend verticalAlign="top" content={BarChartLegend} />
+            <Bar
+              name="Poids (kg)"
+              dataKey="kilogram"
+              fill="#282d30"
+              barSize={7}
+              radius={[20, 20, 0, 0]}
+            />
+            <Bar
+              name="Calories brulées (kCalories)"
+              dataKey="calories"
+              fill="#e60000"
+              barSize={7}
+              radius={[20, 20, 0, 0]}
+            />
+          </BarChart>
+        </ResponsiveContainer>
+      )}
+    </div>
   );
 };
 

@@ -48,6 +48,7 @@ const Card = ({ keyData }) => {
 
 Card.propTypes = {
   keyData: PropTypes.object,
+  error: PropTypes.string,
 };
 
 export default Card;

@@ -10,6 +10,7 @@ import DurationSession from "../components/DurationSession";
 import Card from "../components/Card";
 import { fetchUserData } from "../services/Api";
 import DailyActivity from "../components/DailyActivite";
+import { userMockData } from "../services/Mock";
 
 const Profil = () => {
   const [userData, setUserData] = useState({});
@@ -17,22 +18,26 @@ const Profil = () => {
   const [error, setError] = useState(null);
   let { userId } = useParams();
 
-  if (loading) <h1>LOADING...</h1>;
-
-  if (error) console.log(error);
-
   useEffect(() => {
-    setLoading(true);
     const getUserData = async () => {
-      const res = await fetchUserData(userId);
-      setUserData(res);
+      try {
+        let res = {};
 
-      if (res.error) {
-        setLoading(false);
-        setError(res.error);
-      } else {
-        setLoading(false);
+        process.env.REACT_APP_SOURCE_DATA === "api"
+          ? (res = await fetchUserData(userId))
+          : (res = await userMockData(userId));
+
         setUserData(res);
+        setLoading(false);
+      } catch (error) {
+        if (error.name === "Error") {
+          setError(error.message);
+        } else if (error.name === "TypeError") {
+          setError(
+            "impossible de récupérer les données de l'API user main data"
+          );
+        }
+        setLoading(false);
       }
     };
 
@@ -44,28 +49,30 @@ const Profil = () => {
       <HorizontalNavigation />
       <VerticalNavigation />
       <main className="dashboard">
+        {loading && <h1 style={{ textAlign: "center" }}>LOADING...</h1>}
         <section>
-          <h1>
-            Bonjour
-            <span className="firstName">
-              {userData.userInfos && userData.userInfos.firstName}
-            </span>
-          </h1>
-          <p>Félicitation ! vous avez explosé vos objectifs hier &#128079;</p>
+          {error && <div className="errorMessage">{error}</div>}
+          {userData.userInfos && (
+            <div>
+              <h1>
+                Bonjour
+                <span className="firstName">
+                  {userData.userInfos.firstName}
+                </span>
+              </h1>
+              <p>
+                Félicitation ! vous avez explosé vos objectifs hier &#128079;
+              </p>
+            </div>
+          )}
         </section>
 
         <article>
           <article className="leftContent">
-            <div className="dailyActivity">
-              <DailyActivity />
-            </div>
+            <DailyActivity />
             <div className="informationCards">
-              <div className="card card-orange">
-                <DurationSession />
-              </div>
-              <div className="card card-black">
-                <Performance />
-              </div>
+              <DurationSession />
+              <Performance />
               <div className="card card-lightGray">
                 <Score userData={userData} />
               </div>

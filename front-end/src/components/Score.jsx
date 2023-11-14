@@ -10,6 +10,7 @@ import {
 
 const Score = ({ userData }) => {
   standardizedScoreData(userData);
+
   const scoreInPercent = userData.score * 100;
   const data = [
     {
@@ -49,7 +50,7 @@ const Score = ({ userData }) => {
   };
 
   return (
-    <React.Fragment>
+    <div className="card card-lightGray">
       <ResponsiveContainer>
         <RadialBarChart
           data={data}
@@ -81,12 +82,13 @@ const Score = ({ userData }) => {
           </text>
         </RadialBarChart>
       </ResponsiveContainer>
-    </React.Fragment>
+    </div>
   );
 };
 
 Score.propTypes = {
   userData: PropTypes.object,
+  error: PropTypes.string,
 };
 
 export default Score;
