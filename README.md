@@ -40,6 +40,10 @@ Après exécution de la commande, le projet sera copié dans le répertoire `www
 2. frontend
    `npm start`
 
+### Mock de données :
+
+Rendez-vous au fichier `.env` à la racine du répertoire `front-end` pour choisir mock comme source de données
+
 ### Visualisation des données utilisateurs 12 et 18
 
 - utilisateur d'id = 12 :
