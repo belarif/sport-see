@@ -7,14 +7,10 @@ const baseUrl = "http://localhost:3000/user/";
  * @return { object | error }
  */
 const fetchUserData = async (userId) => {
-  try {
-    const response = await fetch(`${baseUrl}${userId}`);
-    const { data } = await response.json();
+  const response = await fetch(`${baseUrl}${userId}`);
+  const { data } = await response.json();
 
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
+  return data;
 };
 
 /**
@@ -24,14 +20,10 @@ const fetchUserData = async (userId) => {
  * @return { object | error }
  */
 const fetchUserDailyActivity = async (userId) => {
-  try {
-    const response = await fetch(`${baseUrl}${userId}/activity`);
-    const { data } = await response.json();
+  const response = await fetch(`${baseUrl}${userId}/activity`);
+  const { data } = await response.json();
 
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
+  return data;
 };
 
 /**
@@ -41,14 +33,10 @@ const fetchUserDailyActivity = async (userId) => {
  * @return { object | error }
  */
 const fetchUserPerformance = async (userId) => {
-  try {
-    const response = await fetch(`${baseUrl}${userId}/performance`);
-    const { data } = await response.json();
+  const response = await fetch(`${baseUrl}${userId}/performance`);
+  const { data } = await response.json();
 
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
+  return data;
 };
 
 /**
@@ -58,14 +46,10 @@ const fetchUserPerformance = async (userId) => {
  * @return { object | error }
  */
 const fetchUserDurationSession = async (userId) => {
-  try {
-    const response = await fetch(`${baseUrl}${userId}/average-sessions`);
-    const { data } = await response.json();
+  const response = await fetch(`${baseUrl}${userId}/average-sessions`);
+  const { data } = await response.json();
 
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
+  return data;
 };
 
 export {

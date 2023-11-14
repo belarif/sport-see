@@ -18,28 +18,21 @@ const Profil = () => {
   const [error, setError] = useState(null);
   let { userId } = useParams();
 
-  if (loading) <h1>LOADING...</h1>;
-
-  if (error) console.log(error);
-
   useEffect(() => {
-    setLoading(true);
-
     const getUserData = async () => {
-      let res = [];
+      try {
+        let res = [];
+        process.env.REACT_APP_SOURCE_DATA === "api"
+          ? (res = await fetchUserData(userId))
+          : (res = await userMockData(userId));
 
-      process.env.REACT_APP_SOURCE_DATA === "api"
-        ? (res = await fetchUserData(userId))
-        : (res = await userMockData(userId));
-
-      setUserData(res);
-
-      if (res.error) {
-        setLoading(false);
-        setError(res.error);
-      } else {
-        setLoading(false);
         setUserData(res);
+        setLoading(false);
+      } catch (error) {
+        setError(
+          "impossible de récupérer les données de l'API pour cette section"
+        );
+        setLoading(false);
       }
     };
 
@@ -51,21 +44,27 @@ const Profil = () => {
       <HorizontalNavigation />
       <VerticalNavigation />
       <main className="dashboard">
+        {loading && <h1 style={{ textAlign: "center" }}>LOADING...</h1>}
         <section>
-          <h1>
-            Bonjour
-            <span className="firstName">
-              {userData.userInfos && userData.userInfos.firstName}
-            </span>
-          </h1>
-          <p>Félicitation ! vous avez explosé vos objectifs hier &#128079;</p>
+          {error && <div className="errorMessage">{error}</div>}
+          {userData.userInfos && (
+            <div>
+              <h1>
+                Bonjour
+                <span className="firstName">
+                  {userData.userInfos.firstName}
+                </span>
+              </h1>
+              <p>
+                Félicitation ! vous avez explosé vos objectifs hier &#128079;
+              </p>
+            </div>
+          )}
         </section>
 
         <article>
           <article className="leftContent">
-            <div className="dailyActivity">
-              <DailyActivity />
-            </div>
+            <DailyActivity />
             <div className="informationCards">
               <div className="card card-orange">
                 <DurationSession />
