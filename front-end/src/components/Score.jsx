@@ -50,7 +50,7 @@ const Score = ({ userData }) => {
   };
 
   return (
-    <React.Fragment>
+    <div className="card card-lightGray">
       <ResponsiveContainer>
         <RadialBarChart
           data={data}
@@ -82,7 +82,7 @@ const Score = ({ userData }) => {
           </text>
         </RadialBarChart>
       </ResponsiveContainer>
-    </React.Fragment>
+    </div>
   );
 };
 
