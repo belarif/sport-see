@@ -66,15 +66,9 @@ const Profil = () => {
           <article className="leftContent">
             <DailyActivity />
             <div className="informationCards">
-              <div className="card card-orange">
-                <DurationSession />
-              </div>
-              <div className="card card-black">
-                <Performance />
-              </div>
-              <div className="card card-lightGray">
-                <Score userData={userData} />
-              </div>
+              <DurationSession />
+              <Performance />
+              <Score userData={userData} />
             </div>
           </article>
           <article className="rightContent">

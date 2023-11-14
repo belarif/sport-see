@@ -7,17 +7,24 @@ import { userMockAverageSessionsData } from "../services/Mock";
 
 const DurationSession = () => {
   const [durationSession, setDurationSession] = useState([]);
+  const [error, setError] = useState(null);
   let { userId } = useParams();
 
   useEffect(() => {
     const getUserDurationSession = async () => {
-      let res = [];
+      try {
+        let res = [];
 
-      process.env.REACT_APP_SOURCE_DATA === "api"
-        ? (res = await fetchUserDurationSession(userId))
-        : (res = await userMockAverageSessionsData(userId));
+        process.env.REACT_APP_SOURCE_DATA === "api"
+          ? (res = await fetchUserDurationSession(userId))
+          : (res = await userMockAverageSessionsData(userId));
 
-      setDurationSession(standardizedDurationSessionData(res));
+        setDurationSession(standardizedDurationSessionData(res));
+      } catch (error) {
+        setError(
+          "impossible de récupérer les données de l'API pour cette section"
+        );
+      }
     };
 
     getUserDurationSession();
@@ -41,7 +48,12 @@ const DurationSession = () => {
   };
 
   return (
-    <React.Fragment>
+    <div className="card card-orange">
+      {error && (
+        <div className="errorMessage" style={{ color: "black" }}>
+          {error}
+        </div>
+      )}
       <ResponsiveContainer>
         <LineChart
           data={durationSession}
@@ -82,7 +94,7 @@ const DurationSession = () => {
           </text>
         </LineChart>
       </ResponsiveContainer>
-    </React.Fragment>
+    </div>
   );
 };
 
