@@ -35,7 +35,7 @@ Après exécution de la commande, le projet sera copié dans le répertoire `www
 ### Lancement de l'application
 
 1. backend :
-   `yarn dev`
+   `npm start`
 
 2. frontend
    `npm start`
