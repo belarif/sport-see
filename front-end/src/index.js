@@ -6,7 +6,7 @@ import Error from "./pages/Error";
 
 const router = createBrowserRouter([
   {
-    path: "/Profil/:userId",
+    path: "/profil/:userId",
     element: <Profil />,
   },
   {
