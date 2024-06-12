@@ -32,12 +32,15 @@ Après exécution de la commande, le projet sera copié dans le répertoire `www
    `c:/wamp64/www/sport-see/front-end` puis exécutez la commande :
    `yarn`
 
-### Lancement de l'application
+### Lancement de l'application en local
+
+1. dans le fichier "front-end/src/services/Api.js", remplacez la valeur de la constante `baseUrl`
+   par : "http://localhost:3001/user/"
 
 1. backend :
    `npm start`
 
-2. frontend
+1. frontend
    `npm start`
 
 ### Mock de données :
