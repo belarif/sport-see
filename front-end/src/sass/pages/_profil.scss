@@ -9,7 +9,7 @@
     margin-bottom: 70px;
 
     p {
-      color: #000000;
+      color: $black;
       font-size: 18px;
       font-weight: 700;
     }
@@ -20,7 +20,7 @@
 
       .firstName {
         margin-left: 10px;
-        color: #ff0101;
+        color: $primary;
       }
     }
   }
@@ -53,7 +53,7 @@
 
   .errorMessage {
     text-align: center;
-    color: red;
+    color: $primary;
     font-weight: bolder;
     font-size: 1.2em;
   }
