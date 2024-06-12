@@ -47,7 +47,7 @@ Rendez-vous au fichier `.env` à la racine du répertoire `front-end` pour chois
 ### Visualisation des données utilisateurs 12 et 18
 
 - utilisateur d'id = 12 :
-  `http://localhost:3001/Profil/12`
+  `http://localhost:3000/Profil/12`
 
 - utilisateur d'id = 18 :
-  `http://localhost:3001/Profil/18`
+  `http://localhost:3000/Profil/18`

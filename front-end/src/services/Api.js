@@ -1,4 +1,4 @@
-const baseUrl = "https://sport-see-back-end.vercel.app/user/";
+const baseUrl = "http://localhost:3001/user/";
 
 /**
  * request user data with fetch method
