@@ -3,8 +3,13 @@ import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Profil from "./pages/Profil";
 import Error from "./pages/Error";
+import Home from "./pages/Home";
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
   {
     path: "/profil/:userId",
     element: <Profil />,

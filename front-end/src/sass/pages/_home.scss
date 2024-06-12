@@ -1,0 +1,15 @@
+.home {
+  text-align: center;
+
+  button {
+    border-color: $primary;
+    border-radius: 20px;
+    padding: 10px 28px;
+    font-size: 1.2rem;
+    background-color: $primary;
+  }
+
+  button:first-child {
+    margin-right: 16px;
+  }
+}

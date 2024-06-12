@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 const HorizontalNavigation = () => {
   return (
     <nav className="horizontalNav">
-      <img src={logo} alt="logo sport see" />
+      <Link to="/">
+        <img src={logo} alt="logo sport see" />
+      </Link>
       <ul>
         <li>
-          <Link>Accueil</Link>
+          <Link to="/">Accueil</Link>
         </li>
         <li>
           <Link>Profil</Link>
