@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "../sass/main.scss";
+import "../sass/main.css";
 import HorizontalNavigation from "../components/HorizontalNavigation";
 import VerticalNavigation from "../components/VerticalNavigation";
 import Score from "../components/Score";
