@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import HorizontalNavigation from "../components/HorizontalNavigation";
 import VerticalNavigation from "../components/VerticalNavigation";
+import Modal from "../components/Modal";
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
       <HorizontalNavigation />
       <VerticalNavigation />
       <main className="home">
+        <Modal />
         <h1>
           Cliquez sur un bouton pour visualiser les données de l'utilisateur
         </h1>
