@@ -25,6 +25,7 @@ const Modal = () => {
               <li>Sass</li>
               <li>Figma</li>
               <li>React</li>
+              <li>VsCode</li>
               <li>Javacript</li>
               <li>Recharts.js</li>
               <li>Git & GitHub</li>
